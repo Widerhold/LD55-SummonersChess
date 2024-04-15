@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://oyrxsxg4v37x"]
+
+[ext_resource type="Script" path="res://scripts/element.gd" id="1_1eday"]
+[ext_resource type="Shader" path="res://scenes/wave.gdshader" id="2_0jgij"]
+[ext_resource type="Texture2D" uid="uid://dfaochou0ng2r" path="res://sprites/fire.png" id="2_4ynam"]
+[ext_resource type="FontFile" uid="uid://bvtn8rirvrpmy" path="res://fonts/PixeloidSans-mLxMm.ttf" id="4_yumsr"]
+[ext_resource type="Texture2D" uid="uid://6smsxwsoynjd" path="res://sprites/pentagram.png" id="5_fr86w"]
+[ext_resource type="AudioStream" uid="uid://bx734m1kwwchf" path="res://audio/fire.mp3" id="6_j7par"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrnst"]
+shader = ExtResource("2_0jgij")
+shader_parameter/amplitude = 2.0
+shader_parameter/frequency = 4.0
+shader_parameter/speed = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_t34k6"]
+font = ExtResource("4_yumsr")
+font_size = 8
+
+[node name="Fire" type="Node2D" groups=["Element", "Piece"]]
+script = ExtResource("1_1eday")
+directions = [Vector2(1, 1)]
+state = 1
+max_lifespan = 5
+lifespan = 5
+movement_length = 2
+decays = true
+type = 1
+
+[node name="SummoningCircle" type="Sprite2D" parent="."]
+texture = ExtResource("5_fr86w")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.729412, 0.380392, 0.337255, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_qrnst")
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_4ynam")
+
+[node name="LifespanLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 5.0
+offset_top = -12.0
+offset_right = 45.0
+offset_bottom = 11.0
+text = "1
+"
+label_settings = SubResource("LabelSettings_t34k6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_j7par")
+autoplay = true

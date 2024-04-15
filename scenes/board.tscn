@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk28id26hekey"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_xhj8c"]
+[ext_resource type="PackedScene" uid="uid://dv2276556enth" path="res://scenes/tile.tscn" id="2_ddwbg"]
+
+[node name="board" type="Node2D"]
+script = ExtResource("1_xhj8c")
+cell_size = null
+grid_height = null
+grid_width = null
+ground_tile = ExtResource("2_ddwbg")
+fire_color = null
+water_color = null
+earth_color = null
+air_color = null

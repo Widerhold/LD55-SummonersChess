@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv2276556enth"]
+
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_iqorq"]
+[ext_resource type="Texture2D" uid="uid://byet8nddlfqbw" path="res://sprites/tile.png" id="1_www8t"]
+[ext_resource type="Texture2D" uid="uid://hnsl17viw0xj" path="res://sprites/tile_overlay.png" id="2_ty5cl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t8lk"]
+size = Vector2(32, 32)
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_iqorq")
+
+[node name="Overlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.701961, 0.701961, 0.701961, 0.196078)
+texture_filter = 1
+position = Vector2(33, -19)
+texture = ExtResource("2_ty5cl")
+offset = Vector2(-33, 19)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.7, 0.7, 0.7, 1)
+texture_filter = 1
+texture = ExtResource("1_www8t")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_2t8lk")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

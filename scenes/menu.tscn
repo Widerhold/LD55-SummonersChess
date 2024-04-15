@@ -1,0 +1,215 @@
+[gd_scene load_steps=13 format=3 uid="uid://b0h0x65oihlnc"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_dfiyd"]
+[ext_resource type="Texture2D" uid="uid://dmdtyxqnvk54" path="res://sprites/titlescreen.png" id="1_g10gw"]
+[ext_resource type="FontFile" uid="uid://bvtn8rirvrpmy" path="res://fonts/PixeloidSans-mLxMm.ttf" id="2_17bcf"]
+[ext_resource type="Texture2D" uid="uid://byet8nddlfqbw" path="res://sprites/tile.png" id="2_u4o23"]
+[ext_resource type="Shader" path="res://scenes/wave.gdshader" id="3_wl6pe"]
+[ext_resource type="Texture2D" uid="uid://dubtr7cr27ll4" path="res://sprites/earth.png" id="4_qoknk"]
+[ext_resource type="Texture2D" uid="uid://dfaochou0ng2r" path="res://sprites/fire.png" id="5_ekmgh"]
+[ext_resource type="Texture2D" uid="uid://cgqkeb7imwnv8" path="res://sprites/air.png" id="6_dtlfe"]
+[ext_resource type="Texture2D" uid="uid://jgsy0j1dbukg" path="res://sprites/water.png" id="7_ly45t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lk7w1"]
+shader = ExtResource("3_wl6pe")
+shader_parameter/amplitude = 2.0
+shader_parameter/frequency = 4.0
+shader_parameter/speed = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4uf36"]
+font = ExtResource("2_17bcf")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_al34y"]
+font = ExtResource("2_17bcf")
+font_size = 12
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dfiyd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+offset_right = 800.0
+offset_bottom = 450.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+offset_left = 272.0
+offset_top = 16.0
+offset_right = 528.0
+offset_bottom = 272.0
+texture = ExtResource("1_g10gw")
+
+[node name="Earth" type="TextureRect" parent="."]
+modulate = Color(0.262745, 0.262745, 0.309804, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_lk7w1")
+layout_mode = 2
+offset_left = 384.0
+offset_top = 64.0
+offset_right = 416.0
+offset_bottom = 96.0
+texture = ExtResource("4_qoknk")
+
+[node name="Fire" type="TextureRect" parent="."]
+modulate = Color(0.729412, 0.380392, 0.337255, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_lk7w1")
+layout_mode = 2
+offset_left = 384.0
+offset_top = 16.0
+offset_right = 424.0
+offset_bottom = 56.0
+texture = ExtResource("5_ekmgh")
+
+[node name="Air" type="TextureRect" parent="."]
+modulate = Color(1, 0.894118, 0.470588, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_lk7w1")
+layout_mode = 2
+offset_left = 320.0
+offset_top = 41.0
+offset_right = 360.0
+offset_bottom = 81.0
+texture = ExtResource("6_dtlfe")
+
+[node name="Water" type="TextureRect" parent="."]
+modulate = Color(0.392157, 0.462745, 0.909804, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_lk7w1")
+layout_mode = 2
+offset_left = 441.0
+offset_top = 41.0
+offset_right = 481.0
+offset_bottom = 81.0
+texture = ExtResource("7_ly45t")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 2
+offset_top = 272.0
+offset_right = 800.0
+offset_bottom = 292.0
+text = "SUMMONERS CHESS"
+label_settings = SubResource("LabelSettings_4uf36")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+anchor_left = -0.007
+anchor_right = -0.007
+offset_left = 299.73
+offset_top = 305.0
+offset_right = 1099.73
+offset_bottom = 755.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(112, 16)
+layout_mode = 2
+ignore_texture_size = true
+
+[node name="PlayBUtton" type="NinePatchRect" parent="MarginContainer/VBoxContainer/TextureButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.5
+anchor_right = 0.08
+anchor_bottom = 0.5
+offset_left = -8.96
+offset_top = -8.0
+offset_right = 103.04
+offset_bottom = 8.0
+texture = ExtResource("2_u4o23")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TextureButton/PlayBUtton"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 23.0
+text = "Play"
+label_settings = SubResource("LabelSettings_al34y")
+horizontal_alignment = 1
+
+[node name="OptionsButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(112, 16)
+layout_mode = 2
+ignore_texture_size = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/OptionsButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.5
+anchor_right = 0.08
+anchor_bottom = 0.5
+offset_left = -8.96
+offset_top = -8.0
+offset_right = 103.04
+offset_bottom = 8.0
+texture = ExtResource("2_u4o23")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/OptionsButton/NinePatchRect"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 23.0
+text = "Options"
+label_settings = SubResource("LabelSettings_al34y")
+horizontal_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(112, 16)
+layout_mode = 2
+ignore_texture_size = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/QuitButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.5
+anchor_right = 0.08
+anchor_bottom = 0.5
+offset_left = -8.96
+offset_top = -8.0
+offset_right = 103.04
+offset_bottom = 8.0
+texture = ExtResource("2_u4o23")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/QuitButton/NinePatchRect"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 23.0
+text = "Quit"
+label_settings = SubResource("LabelSettings_al34y")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TextureButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

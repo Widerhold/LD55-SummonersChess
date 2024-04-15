@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds8b8obyr528b"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_nrwf0"]
+[ext_resource type="Texture2D" uid="uid://6smsxwsoynjd" path="res://sprites/pentagram.png" id="2_fybu6"]
+[ext_resource type="Shader" path="res://scenes/breath.gdshader" id="2_rbt4c"]
+[ext_resource type="Texture2D" uid="uid://c2xymnm02dpm6" path="res://sprites/summoner.png" id="2_rt17v"]
+[ext_resource type="Texture2D" uid="uid://cgfcwoxtq2881" path="res://sprites/staff.png" id="3_kf1b0"]
+[ext_resource type="AudioStream" uid="uid://dh6o4eu7dockk" path="res://audio/teleport.mp3" id="6_gd1ls"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojnum"]
+shader = ExtResource("2_rbt4c")
+shader_parameter/max_scale = 1.1
+shader_parameter/min_scale = 1.0
+shader_parameter/breath_speed = 1.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_nrwf0")
+
+[node name="SummoningCircle" type="Sprite2D" parent="."]
+texture = ExtResource("2_fybu6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ojnum")
+texture = ExtResource("2_rt17v")
+
+[node name="Staff" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+position = Vector2(0.166283, 6.06911)
+rotation = 1.32565
+texture = ExtResource("3_kf1b0")
+offset = Vector2(0.378712, -5.91877)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gd1ls")
+autoplay = true

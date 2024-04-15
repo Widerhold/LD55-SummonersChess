@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc83efbcibt7h"]
+
+[ext_resource type="FontFile" uid="uid://bvtn8rirvrpmy" path="res://fonts/PixeloidSans-mLxMm.ttf" id="1_7yiuq"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_bxio2"]
+[ext_resource type="Texture2D" uid="uid://byet8nddlfqbw" path="res://sprites/tile.png" id="3_nmjgn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ohpas"]
+font = ExtResource("1_7yiuq")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_inims"]
+font = ExtResource("1_7yiuq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8cwig"]
+font = ExtResource("1_7yiuq")
+font_size = 12
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bxio2")
+
+[node name="GameOverLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 187.0
+offset_right = 800.0
+offset_bottom = 227.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_ohpas")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloorsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 235.0
+offset_right = 800.0
+offset_bottom = 275.0
+text = "FLOORS CLEARED: 0"
+label_settings = SubResource("LabelSettings_inims")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.007
+anchor_right = -0.007
+offset_left = 288.28
+offset_top = 288.0
+offset_right = 1088.28
+offset_bottom = 738.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(112, 16)
+layout_mode = 2
+ignore_texture_size = true
+
+[node name="PlayBUtton" type="NinePatchRect" parent="MarginContainer/VBoxContainer/RetryButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.5
+anchor_right = 0.08
+anchor_bottom = 0.5
+offset_left = -8.96
+offset_top = -8.0
+offset_right = 103.04
+offset_bottom = 8.0
+texture = ExtResource("3_nmjgn")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RetryButton/PlayBUtton"]
+layout_mode = 0
+offset_left = -1.04001
+offset_right = 110.96
+offset_bottom = 23.0
+text = "RETRY"
+label_settings = SubResource("LabelSettings_8cwig")
+horizontal_alignment = 1
+
+[node name="BackToMenu" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(112, 16)
+layout_mode = 2
+ignore_texture_size = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/BackToMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.5
+anchor_right = 0.08
+anchor_bottom = 0.5
+offset_left = -8.96
+offset_top = -8.0
+offset_right = 103.04
+offset_bottom = 8.0
+texture = ExtResource("3_nmjgn")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BackToMenu/NinePatchRect"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 23.0
+text = "Options"
+label_settings = SubResource("LabelSettings_8cwig")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]

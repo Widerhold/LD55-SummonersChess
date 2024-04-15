@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs051d3674ep1"]
+
+[ext_resource type="Script" path="res://scripts/element.gd" id="1_2qu7r"]
+[ext_resource type="Texture2D" uid="uid://jgsy0j1dbukg" path="res://sprites/water.png" id="2_6smxh"]
+[ext_resource type="Shader" path="res://scenes/wave.gdshader" id="2_x73qd"]
+[ext_resource type="FontFile" uid="uid://bvtn8rirvrpmy" path="res://fonts/PixeloidSans-mLxMm.ttf" id="4_lsc7w"]
+[ext_resource type="Texture2D" uid="uid://6smsxwsoynjd" path="res://sprites/pentagram.png" id="5_digdj"]
+[ext_resource type="AudioStream" uid="uid://c4oot01oldf7l" path="res://audio/water.mp3" id="6_187es"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnoaf"]
+shader = ExtResource("2_x73qd")
+shader_parameter/amplitude = 2.0
+shader_parameter/frequency = 4.0
+shader_parameter/speed = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pss8r"]
+font = ExtResource("4_lsc7w")
+font_size = 8
+
+[node name="Water" type="Node2D" groups=["Element", "Piece"]]
+script = ExtResource("1_2qu7r")
+directions = [Vector2(1, 2.08165e-12)]
+state = 1
+max_lifespan = 10
+lifespan = 10
+movement_length = 1
+decays = true
+type = 2
+
+[node name="SummoningCircle" type="Sprite2D" parent="."]
+texture = ExtResource("5_digdj")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.392157, 0.462745, 0.909804, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_vnoaf")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_6smxh")
+
+[node name="LifespanLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 5.0
+offset_top = -12.0
+offset_right = 45.0
+offset_bottom = 11.0
+text = "1
+"
+label_settings = SubResource("LabelSettings_pss8r")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_187es")
+autoplay = true
